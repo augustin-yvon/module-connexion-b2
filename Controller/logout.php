@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
 
 $fileName = $_SESSION['actual_page'];
 
-if ($fileName == '../View/profile.php' || $fileName == 'index.php') {
+if ($fileName == 'profile.php' || $fileName == 'index.php' || $fileName == 'admin.php') {
     $fileName = '../index.php';
 }else{
     $fileName = "../View/" . $fileName;

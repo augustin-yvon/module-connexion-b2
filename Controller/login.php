@@ -29,8 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["user"] = $user;
 
-        header("Location: ../View/profile.php");
-        exit();
+        if ($user->getLogin() == 'admiN1337$') {
+            header("Location: ../View/admin.php");
+            exit();
+        }else {
+            header("Location: ../View/profile.php");
+            exit();
+        }
     } else {
         $error = "Login ou mot de passe incorrect.";
         $_SESSION['error'] = $error;

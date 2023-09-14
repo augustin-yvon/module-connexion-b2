@@ -5,8 +5,6 @@ require_once '../html-element/header.php';
 require_once '../html-element/footer.php';
 require_once '../html-element/logState.php';
 
-session_start();
-
 $request = new SqlRequest();
 
 // besoin de routeur pour mettre dans un autre fichier

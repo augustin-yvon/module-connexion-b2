@@ -1,11 +1,11 @@
 <?php
 class User {
     private ?int $id;
-    private ?str $login;
-    private ?str $password;
-    private ?str $logState;
+    private ?string $login;
+    private ?string $password;
+    private ?string $logState;
 
-    public function __construct($login, $password, $id = 0, $logState = false) {
+    public function __construct(string $login, string $password, int $id = 0, bool $logState = false) {
         $this->login = $login;
         $this->password = $password;
         $this->id = $id;
@@ -13,28 +13,28 @@ class User {
     }
     
     // SETTER
-    public function setLogin($newLogin) {
+    public function setLogin(string $newLogin) {
         $this->login = $newLogin;
     }
     
-    public function setPassword($newPassword) {
+    public function setPassword(string $newPassword) {
         $this->password = $newPassword;
     }
 
-    public function setId($newId) {
+    public function setId(int $newId) {
         $this->id = $newId;
     }
     
     //GETTER
-    public function getLogin() {
+    public function getLogin() : string {
         return $this->login;
     }
     
-    public function getPassword() {
+    public function getPassword() : string {
         return $this->password;
     }
 
-    public function getId() {
+    public function getId() : int {
         return $this->id;
     }
 
