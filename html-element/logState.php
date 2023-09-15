@@ -1,5 +1,5 @@
 <?php
-function generateLogState() {
+function generateLogState() : string {
     $logState = '';
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
@@ -17,7 +17,7 @@ function generateLogState() {
     return $logState;
 }
 
-function generateLogStateIndex() {
+function generateLogStateIndex() : string {
     $logState = '';
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];

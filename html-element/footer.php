@@ -1,5 +1,5 @@
 <?php
-function generateFooter() {
+function generateFooter() : string {
     $footer = '<footer>';
     $footer .= '<p>';
     $footer .= '2023 © Réalisé par ';
@@ -10,7 +10,7 @@ function generateFooter() {
     return $footer;
 }
 
-function generateFooterIndex() {
+function generateFooterIndex() : string {
     $footer = '<footer>';
     $footer .= '<p>';
     $footer .= '2023 © Réalisé par ';

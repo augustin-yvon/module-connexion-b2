@@ -1,5 +1,5 @@
 <?php
-function generateHeader() {
+function generateHeader() : string {
     $header = '<header>';
     $header .= '<div class="header-content">';
 
@@ -21,7 +21,7 @@ function generateHeader() {
     return $header;
 }
 
-function generateHeaderIndex() {
+function generateHeaderIndex() : string {
     $header = '<header>';
     $header .= '<div class="header-content">';
 

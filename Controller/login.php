@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Mettre l'utilisateur à l'état connecté
-        $user->login();
+        $user->logIn();
 
         $_SESSION["user"] = $user;
 

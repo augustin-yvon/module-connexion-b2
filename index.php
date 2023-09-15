@@ -37,10 +37,8 @@ session_start();
                 <a href="View/login.php" class="button">Connexion</a>
             </div>
 
-            <!-- <img id="switchTheme" src="assets/img/theme-sombre.png" alt="clair/sombre"> -->
         </section>
-
-
+        
         <?php echo generateFooterIndex(); ?>
     </body>
 </html>

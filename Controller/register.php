@@ -36,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Insérer les données dans la base de données si aucune erreur n'est survenue
     if (empty($errors)) {
         unset($_SESSION['errors']);
-        if ($request->register($login, $firstname, $lastname, $hashed_password)) {
+        $crypted_password = crypt($password);
+        if ($request->register($login, $firstname, $lastname, $password)) {
             header("Location: ../View/login.php");
             exit();
         }

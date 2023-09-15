@@ -1,14 +1,7 @@
-requete asynchrone async await
-
-gestion d erreur
-
-doctrine orm 
-typeorm
-
 typer les variable dans les classe
 typer les retour
 setter fluide
 
-hasher les mdp
+hasher les mdp : crypt() password_verify()
 
-commenter
+documenter
