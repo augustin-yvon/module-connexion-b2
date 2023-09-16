@@ -7,19 +7,18 @@ session_start();
 
 $request = new SqlRequest();
 
-if (isset($_SESSION['user'])) { 
+if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-    $login = $user->getLogin();
-    $userID = $user->getId($login); 
+    $userID = $user->getId($user->getLogin());
 }
 
 // Traitement de la requête de modification du profil
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données envoyées par le formulaire
+    // Récupére les données envoyées par le formulaire
     $newLogin = htmlspecialchars($_POST['login']);
     $newPassword = htmlspecialchars($_POST['password']);
 
-    // Mettre à jour les données dans la base de données
+    // Met à jour les données dans la base de données
     $request->updateLogin($newLogin, $newPassword, $userID);
 }
 header("Location: ../View/profile.php");

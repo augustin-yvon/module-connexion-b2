@@ -1,10 +1,21 @@
 <?php
+/**
+ * Représente un utilisateur du système.
+ */
 class User {
     private int $id;
     private string $login;
     private string $password;
     private bool $logState;
 
+    /**
+     * Constructeur de la classe User.
+     *
+     * @param string $login Le nom d'utilisateur.
+     * @param string $password Le mot de passe de l'utilisateur.
+     * @param int $id L'identifiant de l'utilisateur (par défaut, 0).
+     * @param bool $logState L'état de connexion de l'utilisateur (par défaut, false).
+     */
     public function __construct(string $login, string $password, int $id = 0, bool $logState = false) {
         $this->login = $login;
         $this->password = $password;
@@ -12,12 +23,15 @@ class User {
         $this->logState = $logState;
     }
     
-    // SETTER
+    /**
+     * SETTER
+     */
+
     public function setLogin(string $newLogin) : User {
         $this->login = $newLogin;
         return $this;
     }
-    
+
     public function setPassword(string $newPassword) : User {
         $this->password = $newPassword;
         return $this;
@@ -28,7 +42,10 @@ class User {
         return $this;
     }
     
-    //GETTER
+    /**
+     * GETTER
+     */
+
     public function getLogin() : string {
         return $this->login;
     }
@@ -45,14 +62,25 @@ class User {
         return $this->logState;
     }
 
+    /**
+     * Connecte l'utilisateur.
+     */
     public function logIn() : void {
         $this->logState = true;
     }
 
+    /**
+     * Déconnecte l'utilisateur.
+     */
     public function logOut() : void {
         $this->logState = false;
     }
 
+    /**
+     * Récupère les informations de l'utilisateur sous forme de tableau associatif.
+     *
+     * @return array
+     */
     public function getInfo() : array {
         $tab = [];
         $tab['id'] = $this->id;

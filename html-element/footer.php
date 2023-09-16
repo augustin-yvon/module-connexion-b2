@@ -21,4 +21,3 @@ function generateFooterIndex() : string {
     return $footer;
 }
 ?>
-

@@ -7,24 +7,24 @@ session_start();
 
 $request = new SqlRequest();
 
-// Vérifier si le formulaire a été soumis
+// Vérifie si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
+    // Récupére les données du formulaire
     $login = htmlspecialchars($_POST["login"]);
     $password = htmlspecialchars($_POST["password"]);
 
     if ($request->checkInfo($login, $password)) {
-        // Créer l'objet utilisateur
+        // Crée l'objet utilisateur
         $user = new User($login, $password);
 
         $id = $request->getId($login);
 
-        // Ajouter l'id à l'objet utilisateur
+        // Ajoute l'id à l'objet utilisateur
         if ($id !== false) {
             $user->setId($id);
         }
 
-        // Mettre l'utilisateur à l'état connecté
+        // Met l'utilisateur à l'état connecté
         $user->logIn();
 
         $_SESSION["user"] = $user;

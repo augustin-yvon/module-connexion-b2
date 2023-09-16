@@ -6,7 +6,6 @@ require_once '../html-element/footer.php';
 require_once '../html-element/logState.php';
 
 session_start();
-
 ?>
 
 <!DOCTYPE html>
