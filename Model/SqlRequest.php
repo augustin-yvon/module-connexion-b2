@@ -18,15 +18,16 @@ class SqlRequest extends Database {
     }
 
     public function register(string $login, string $firstname, string $lastname, string $password) : bool {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $registerQuery = "INSERT INTO user (login, firstname, lastname, password) VALUES (:login, :firstname, :lastname, :password)";
+
         $stmt = $this->pdo->prepare($registerQuery);
-        // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        // $_SESSION['hashed-password'] = $hashed_password;
+
         $stmt->bindValue(':login', $login, PDO::PARAM_STR);
         $stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);
         $stmt->bindValue(':lastname', $lastname, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-        // $stmt->bindValue(':password', $hashed_password, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return true;
@@ -37,35 +38,38 @@ class SqlRequest extends Database {
 
     public function getId(string $login) : false|int {
         $selectIdQuery = "SELECT `id` FROM `user` WHERE `login` = :login";
+
         $stmt = $this->pdo->prepare($selectIdQuery);
         $stmt->bindValue(':login', $login, PDO::PARAM_STR);
         $stmt->execute();
+
         $result = $stmt->fetchColumn();
 
         return $result;
     }
 
     public function checkInfo(string $login, string $password) : bool {
-        $checkInfoQuery = "SELECT id FROM user WHERE login = :login AND password = :password";
-        $stmt = $this->pdo->prepare($checkInfoQuery);
+        $checkPasswdQuery = "SELECT password FROM user WHERE login = :login";
+
+        $stmt = $this->pdo->prepare($checkPasswdQuery);
         $stmt->bindValue(':login', $login, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
-    
-        if ($stmt->rowCount() > 0) {
-            return true;
-        }else {
-            return false;
-        }
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $hashedPassword = $result['password'];
+
+        return password_verify($password, $hashedPassword);
     }
 
     public function updateLogin(string $newLogin, string $newPassword, int $userID) : void {
+        $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
         $updateQuery = "UPDATE user SET login = :login, password = :password WHERE id = :id";
 
         $stmt = $this->pdo->prepare($updateQuery);
 
         $stmt->bindValue(':login', $newLogin, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $newPassword, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $hashedNewPassword, PDO::PARAM_STR);
         $stmt->bindValue(':id', $userID, PDO::PARAM_INT);
         $stmt->execute();
     }
@@ -85,7 +89,7 @@ class SqlRequest extends Database {
     }
 
     public function findAllStudent() : array|false {
-        $findStudentQuery = "SELECT * FROM user WHERE login != 'admiN1337$'";
+        $findStudentQuery = "SELECT * FROM user";
         $stmt = $this->pdo->prepare($findStudentQuery);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

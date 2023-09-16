@@ -9,24 +9,15 @@ $request = new SqlRequest();
 
 // besoin de routeur pour mettre dans un autre fichier
 if (isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
-    $login = $user->getLogin();
-    $userID = $user->getId($login);
-    if ($user->getLogState() == false) {
+    $login = $_SESSION['user']->getLogin();
+    $password = $_SESSION['user']->getPassword();
+    if ($_SESSION['user']->getLogState() == false) {
         header("Location: login.php");
         exit();
     }
 }else {
     header("Location: login.php");
     exit();
-}
-
-// Récupérer les informations de l'utilisateur actuel à partir de la base de données
-$result = $request->getLoginById($userID);
-
-if ($result) {
-    $currentLogin = $result['login'];
-    $currentPassword = $result['password'];
 }
 ?>
 
@@ -57,12 +48,12 @@ if ($result) {
                 <form id="profile-form" method="post" action="">
                     <div class="input-box">
                         <img src="../assets/img/login.png" alt="login icon" title="login">
-                        <input type="text" id="login" name="login" placeholder="Login" value="<?php echo $currentLogin; ?>" required>
+                        <input type="text" id="login" name="login" placeholder="Login" value="<?php echo $login; ?>" required>
                     </div>
 
                     <div class="input-box">
                         <img src="../assets/img/password.png" alt="password icon" title="password">
-                        <input type="password" id="password" name="password" placeholder="Password" value="<?php echo $currentPassword; ?>" required>
+                        <input type="password" id="password" name="password" placeholder="Password" value="<?php echo $password; ?>" required>
                     </div>
 
                     <button type="button" id="toggle-password">Show</button>
