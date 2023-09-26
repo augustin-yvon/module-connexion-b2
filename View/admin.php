@@ -1,8 +1,6 @@
 <?php
 require_once '../Model/User.php';
 require_once '../Model/SqlRequest.php';
-require_once '../html-element/header.php';
-require_once '../html-element/footer.php';
 require_once '../html-element/logState.php';
 
 $request = new SqlRequest();
@@ -26,7 +24,7 @@ $students = $request->findAllStudent();
     </head>
 
     <body>
-        <?php echo generateHeader(); ?>
+        <?php include '../html-element/header.php' ?>
 
         <section class="main-container">
 
@@ -52,6 +50,6 @@ $students = $request->findAllStudent();
             </div>
         </section>
 
-        <?php echo generateFooter(); ?>
+        <?php include '../html-element/footer.php' ?>
     </body>
 </html>

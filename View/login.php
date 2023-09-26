@@ -1,8 +1,6 @@
 <?php
 require_once '../Model/User.php';
 require_once '../Model/Database.php';
-require_once '../html-element/header.php';
-require_once '../html-element/footer.php';
 require_once '../html-element/logState.php';
 
 session_start();
@@ -24,7 +22,7 @@ session_start();
     </head>
 
     <body>
-        <?php echo generateHeader(); ?>
+        <?php include '../html-element/header.php' ?>
 
         <section class="main-container">
 
@@ -54,6 +52,6 @@ session_start();
             </div>
         </section>
 
-        <?php echo generateFooter(); ?>
+        <?php include '../html-element/footer.php' ?>
     </body>
 </html>
