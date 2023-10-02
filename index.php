@@ -1,5 +1,5 @@
 <?php
-require_once 'Model/user.php';
+require_once './Model/user.php';
 require_once './html-element/logState.php';
 
 session_start();
